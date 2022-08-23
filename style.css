@@ -29,6 +29,7 @@
     margin: 5px;
     background-color: rgb(212, 147, 26);
     transition: all .5s;
+    cursor: pointer;
 }
 
 .cell:hover {
@@ -70,6 +71,7 @@
     font-weight: bold;
     color: #fff;
     background-color: rgb(170, 56, 56);
+    cursor: pointer;
 }
 .table-rows-item:hover, .table-cols-item:hover {
     background-color: rgb(212, 147, 26);
