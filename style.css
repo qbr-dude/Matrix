@@ -4,7 +4,10 @@
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
-
+.title {
+    font-size: 32px;
+    margin-left: 15px;
+}
 #matrix-field {
     position: relative;
 }
@@ -81,5 +84,11 @@
 }
 .table-cols-item {
     margin-right: 10px;
+}
+.del-row-btn {
+    margin: 5px 10px 0;
+    width: 50px;
+    height: 50px;
+    background-color: rgb(255, 10, 10);
 }
 

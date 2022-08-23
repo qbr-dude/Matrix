@@ -26,16 +26,21 @@ export default class Cell {
         parent.append(cell);
     }
 
+    _renderValue() {
+        document.getElementById(`cell-${this.id}`).innerHTML = `<span>${this.value}</span>`;
+    }
+
     // Обработчик нажатия
     _clickOnCell(callback) {
         this.value += 1;
+        this._renderValue();
         callback(this);
     }
 
     // Обработчик наведения
     _hoverOnCell(event, callback) {
         if (event.type === 'mouseenter') {
-            document.getElementById(`cell-${this.id}`).innerHTML = `<span>${this.value}</span>`;
+            this._renderValue();
         } else if (event.type === 'mouseleave') {
             document.getElementById(`cell-${this.id}`).innerHTML = `<span>${this.id + 1}</span>`;
         }

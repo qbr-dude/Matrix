@@ -1,4 +1,4 @@
-import { calculateAverageForCol, calculateSumsForRow, fillWithCells } from "./helpers.js";
+import { calculateAverageForCol, calculateSumsForRow, fillWithCells, rerenderCells } from "./helpers.js";
 import TableInfo from "./table-info.js";
 
 export default class Matrix {
@@ -15,14 +15,13 @@ export default class Matrix {
 
     // Создание и рендер (рисуется 1 раз, по задумке)
     render() {
-        const matrix = document.createElement('div');
-        matrix.classList.add('matrix-main');
-        matrix.setAttribute('id', 'matrix');
-        document.getElementById('matrix-field').prepend(matrix);
-        const handlers = { clickHandler: this.clickHandle, hoverHandler: this.matrixCellHoverHandle }
-        this.cells = fillWithCells(matrix, this.M, this.N, handlers);
+        this._matrix = document.createElement('div');
+        this._matrix.classList.add('matrix-main');
+        this._matrix.setAttribute('id', 'matrix');
+        document.getElementById('matrix-field').prepend(this._matrix);
+        this._handlers = { clickHandler: this.clickHandle, hoverHandler: this.matrixCellHoverHandle, deleteHandler: this.deleteHandle, addHandle: this.addHandle }
+        this.cells = fillWithCells(this._matrix, this.M, this.N, this._handlers);
         this.table = new TableInfo(this.tableCellHoverHandle);
-        this.table.render();
         // Костыль, чтобы отрисовать в первый раз
         this.clickHandle();
     }
@@ -62,5 +61,16 @@ export default class Matrix {
                 detail: details
             }))
         });
+    }
+
+    deleteHandle = (row) => {
+        this.M -= 1;
+        this.cells.splice(row * this.N, this.N);
+        rerenderCells(this._matrix, this.M, this.N, this._handlers, this.cells);
+        this.clickHandle();
+    }
+
+    addHandle = () => {
+        // without it
     }
 }

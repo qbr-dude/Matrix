@@ -5,7 +5,7 @@ export default class TableInfo {
     constructor(handler) {
         this.rowSum = [];
         this.colAvg = [];
-        this._createHTML();
+        this.render();
         this._hoverHandle = handler; // Не знаю как еще прокинуть обработчик
     }
 
@@ -19,21 +19,28 @@ export default class TableInfo {
     _createHTML() {
         const position = getBoundsOfMatrix();
 
+        if (document.getElementById('table-rows'))
+            document.getElementById('table-rows').remove();
         this._rows = document.createElement('div');
         this._rows.classList.add('table-rows');
+        this._rows.setAttribute('id', 'table-rows');
         this._rows.style.top = '5px';
-        this._rows.style.left = `${position.rigth + 50}px`;
-        document.getElementById('matrix-field').append(this._rows);
+        this._rows.style.left = `${position.rigth + 5}px`;
+        document.getElementById('matrix').after(this._rows);
 
+        if (document.getElementById('table-cols'))
+            document.getElementById('table-cols').remove();
         this._cols = document.createElement('div');
         this._cols.classList.add('table-cols');
+        this._cols.setAttribute('id', 'table-cols');
         this._cols.style.top = `${position.bottom + 50}px`;
         this._cols.style.left = '5px';
-        document.getElementById('matrix-field').append(this._cols);
+        document.getElementById('table-rows').after(this._cols);
     }
 
     // рисовка
     render() {
+        this._createHTML();
         this._renderRows();
         this._renderCols();
     }
