@@ -1,4 +1,5 @@
 import { getBoundsOfMatrix } from "./helpers.js";
+import { TableColInfo, TableRowInfo } from "./UI.js";
 
 export default class TableInfo {
 
@@ -21,20 +22,12 @@ export default class TableInfo {
 
         if (document.getElementById('table-rows'))
             document.getElementById('table-rows').remove();
-        this._rows = document.createElement('div');
-        this._rows.classList.add('table-rows');
-        this._rows.setAttribute('id', 'table-rows');
-        this._rows.style.top = '5px';
-        this._rows.style.left = `${position.rigth + 5}px`;
+        this._rows = TableRowInfo(position);
         document.getElementById('matrix').after(this._rows);
 
         if (document.getElementById('table-cols'))
             document.getElementById('table-cols').remove();
-        this._cols = document.createElement('div');
-        this._cols.classList.add('table-cols');
-        this._cols.setAttribute('id', 'table-cols');
-        this._cols.style.top = `${position.bottom + 50}px`;
-        this._cols.style.left = '5px';
+        this._cols = TableColInfo(position);
         document.getElementById('table-rows').after(this._cols);
     }
 

@@ -1,3 +1,4 @@
+import { CellLevel } from "./UI.js";
 
 /* literally cell */
 export default class Cell {
@@ -53,10 +54,7 @@ export default class Cell {
         if (event.detail.isHover) {
             const value = ((this.value / event.detail.sum) * 100);
             cell.innerHTML = `<span>${value.toFixed(2)}</span>`;
-            const level = document.createElement('div');
-            level.classList.add('cell-level');
-            level.style.height = `${Math.floor(value) * 5}%`;
-            cell.prepend(level);
+            cell.prepend(CellLevel(value));
         } else {
             cell.innerHTML = `<span>${this.id + 1}</span>`;
         }
