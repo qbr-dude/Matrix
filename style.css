@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#matrix-field {
+    position: relative;
+}
+
+.matrix-main {
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+}
+
+.cell {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+    background-color: rgb(212, 147, 26);
+    transition: all .5s;
+}
+
+.cell:hover {
+    background-color: rgb(170, 56, 56);
+    color: #fff;
+    font-weight: bold;
+}
+
+.cell-level {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    background-color: rgb(170, 56, 56);
+}
+
+.cell span {
+    z-index: 5;
+}
+
+.cell-with-highlight {
+    background-color: rgb(170, 56, 56);
+    font-weight: bold;
+}
+
+.table-rows {
+    position: absolute;
+}
+.table-cols {
+    position: absolute;
+    display: flex;
+}
+.table-rows-item, .table-cols-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50px;
+    height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: rgb(170, 56, 56);
+}
+.table-rows-item:hover, .table-cols-item:hover {
+    background-color: rgb(212, 147, 26);
+}
+.table-rows-item {
+    margin-bottom: 10px;
+}
+.table-cols-item {
+    margin-right: 10px;
+}
+
